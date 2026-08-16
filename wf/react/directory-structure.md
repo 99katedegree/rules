@@ -11,7 +11,7 @@ React プロジェクト。[nextjs/directory-structure.md](../nextjs/directory-s
 - `app` ディレクトリは作らない。
 - Vite scaffold の `index.css` / `App.css` は削除し、代わりに `globals.css` に一本化する。
 
-それ以外（`hooks` ディレクトリを作らずコンポーネントに hook を切り分ける方針、コンポーネントのフォルダ名・ファイル名を PascalCase で統一し同名にする方針、hook ファイルは camelCase にする方針）は nextjs と同じ。
+それ以外（`hooks` ディレクトリを作らずコンポーネントに hook を切り分ける方針、コンポーネントのフォルダ名・ファイル名を PascalCase で統一し同名にする方針、hook ファイルは camelCase にする方針、そのコンポーネント内でのみ使うサブコンポーネントを `components` 配下のコンポーネントの `items` に直接置き、test・story・hook は `items` に置かない方針）は nextjs と同じ。
 
 ```
 src
@@ -25,7 +25,10 @@ src
 │   │           ├── PostCard.tsx
 │   │           ├── PostCard.stories.tsx
 │   │           ├── PostCard.test.tsx
-│   │           └── usePostCard.ts
+│   │           ├── usePostCard.ts
+│   │           └── items
+│   │               ├── PostCardHeader.tsx
+│   │               └── PostCardBody.tsx
 │   └── shared
 │       └── Input
 │           ├── Input.tsx
