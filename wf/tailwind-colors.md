@@ -18,7 +18,7 @@
 | --- | --- | --- |
 | `--color-base` | `zinc-50` | `zinc-950` |
 | `--color-main` | `zinc-200` | `zinc-800` |
-| `--color-hover` | `zinc-300` | `zinc-500` |
+| `--color-accent` | `zinc-300` | `zinc-500` |
 | `--color-popover` | `zinc-100` | `zinc-900` |
 
 `--color-base` は背景色を表す。
@@ -29,29 +29,35 @@
 :root {
   --base: var(--color-zinc-50);
   --main: var(--color-zinc-200);
-  --hover: var(--color-zinc-300);
+  --accent: var(--color-zinc-300);
   --popover: var(--color-zinc-100);
 }
 
 .dark {
   --base: var(--color-zinc-950);
   --main: var(--color-zinc-800);
-  --hover: var(--color-zinc-500);
+  --accent: var(--color-zinc-500);
   --popover: var(--color-zinc-900);
 }
 
 @theme inline {
   --color-base: var(--base);
   --color-main: var(--main);
-  --color-hover: var(--hover);
+  --color-accent: var(--accent);
   --color-popover: var(--popover);
 }
 ```
 
 ```tsx
 <div className="bg-base">
-  <button className="bg-main hover:bg-hover">
+  <button className="bg-main hover:bg-accent">
 </div>
+```
+
+`--color-accent` は要素が強調されている状態の面を表す。hover に限らず focus や選択中など、強調される場面すべてに使う。名前は shadcn/ui の同名変数に合わせたもので、ブランドのアクセントカラーではなく zinc の一段階として扱う。
+
+```tsx
+<div className="hover:bg-accent focus-visible:bg-accent aria-selected:bg-accent">
 ```
 
 `--color-popover` はポップオーバーやドロップダウンなど、浮いて表示される要素の背景色。ライト・ダークとも `base` と `main` の中間の明度に置き、どちらの面の上に出しても輪郭が出るようにしている。明度差は小さいので、border と shadow も併せて付ける。
