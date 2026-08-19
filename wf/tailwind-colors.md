@@ -6,9 +6,22 @@
 
 ## 規約
 
-### zincベース
+### グレースケールのベース色
 
-カラーは基本的に `zinc` ベースで作成する。グレースケールが必要な箇所では `slate` / `gray` / `neutral` / `stone` ではなく `zinc` を使う。
+カラーは1つのグレースケールをベースに作成する。ベース色はプロジェクトごとに以下のいずれかから選ぶ。
+
+- `slate`
+- `gray`
+- `zinc`
+- `neutral`
+- `stone`
+- `taupe`
+- `mauve`
+- `mist`
+
+選んだ色はプロジェクト内で固定し、グレースケールが必要な箇所ではその1色だけを使う。複数を混ぜない。
+
+以下このドキュメントでは、選んだベース色を `<base>` と表記する（`<base>-50` は `zinc` を選んだなら `zinc-50`）。コード例は `zinc` を選んだ場合のもの。
 
 ### モードで切り替わるカラー
 
@@ -16,10 +29,10 @@
 
 | 変数 | ライトモード | ダークモード |
 | --- | --- | --- |
-| `--color-base` | `zinc-50` | `zinc-950` |
-| `--color-main` | `zinc-200` | `zinc-800` |
-| `--color-accent` | `zinc-300` | `zinc-500` |
-| `--color-popover` | `zinc-100` | `zinc-900` |
+| `--color-base` | `<base>-50` | `<base>-950` |
+| `--color-main` | `<base>-200` | `<base>-800` |
+| `--color-accent` | `<base>-300` | `<base>-500` |
+| `--color-popover` | `<base>-100` | `<base>-900` |
 
 `--color-base` は背景色を表す。
 
@@ -54,7 +67,7 @@
 </div>
 ```
 
-`--color-accent` は要素が強調されている状態の面を表す。hover に限らず focus や選択中など、強調される場面すべてに使う。名前は shadcn/ui の同名変数に合わせたもので、ブランドのアクセントカラーではなく zinc の一段階として扱う。
+`--color-accent` は要素が強調されている状態の面を表す。hover に限らず focus や選択中など、強調される場面すべてに使う。名前は shadcn/ui の同名変数に合わせたもので、ブランドのアクセントカラーではなくベース色の一段階として扱う。
 
 ```tsx
 <div className="hover:bg-accent focus-visible:bg-accent aria-selected:bg-accent">
@@ -66,14 +79,14 @@
 <div className="bg-popover border border-main shadow-lg">
 ```
 
-### `white` / `black` は zinc に差し替える
+### `white` / `black` はベース色に差し替える
 
-純粋な `#fff` / `#000` は使わない。`--color-white` と `--color-black` を `@theme` で上書きし、zinc の値を指すようにする。`bg-white` / `text-black` はそのまま使えるが、実際に描画される色は zinc になる。
+純粋な `#fff` / `#000` は使わない。`--color-white` と `--color-black` を `@theme` で上書きし、ベース色の値を指すようにする。`bg-white` / `text-black` はそのまま使えるが、実際に描画される色はベース色になる。
 
 | 変数 | 差し替え先 |
 | --- | --- |
-| `--color-white` | `zinc-50` |
-| `--color-black` | `zinc-950` |
+| `--color-white` | `<base>-50` |
+| `--color-black` | `<base>-950` |
 
 ```css
 @theme {
